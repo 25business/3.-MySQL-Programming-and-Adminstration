@@ -1,0 +1,27 @@
+String sql_insert = """
+                INSERT INTO people (first_name, last_name, username, password)
+                VALUES ("John", "Doe", "johnd", "1234");
+                """;
+            Statement st = conn.createStatement();
+            int rows_affected = st.executeUpdate(sql_insert, Statement.RETURN_GENERATED_KEYS);
+            System.out.println(rows_affected);
+            if(rows_affected > 0) {
+                ResultSet generated_keys = st.getGeneratedKeys();
+                generated_keys.next();
+                int inserted_id = generated_keys.getInt(1);
+                System.out.println(inserted_id);
+            }
+
+
+//RegisterPerson.registration_form();
+            //LoginPerson.login_form();
+            /*
+            int rows_affected = ManagePerson.delete_data();
+            System.out.println(rows_affected > 0 ? "User has been deleted."
+                                                 : "Error deleting user.");
+             */
+            /*
+            int rows_affected = ManagePerson.deactivate_account();
+            System.out.println(rows_affected > 0 ? "User has been deleted."
+                    : "Error deleting user.");
+             */
